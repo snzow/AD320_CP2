@@ -17,26 +17,34 @@
      * changes the content on the page based on the item selected in the dropdown menu
      */
     function changeContent() {
-      var dropdown = qs("#dropdown");
-      var selectedOption = dropdown.options[dropdown.selectedIndex].value;
-      var textContainer = qs("#textContainer");
-      var textContent = qs("#text");
-      if (selectedOption === "evilText") {
-        textContent.innerText = "Black Text On An Image";
-        textContainer.classList.remove("goodTextContainer");
-        textContainer.classList.add("evilTextContainer");
-        textContent.classList.remove("goodText");
-        textContent.classList.add("badText");
-      } else if (selectedOption === "goodText") {
-        textContent.innerText = "Clean Text";
-        textContainer.classList.remove("evilTextContainer");
-        textContainer.classList.add("goodTextContainer");
-        textContent.classList.remove("badText");
-        textContent.classList.add("goodText");
+        var dropdown = qs("#dropdown");
+        var selectedOption = dropdown.options[dropdown.selectedIndex].value;
+        var textContainer = qs("#textContainer");
+        var textContent = qs("#text");
+      
+        var newText = document.createElement("p");
+        newText.id = "text";
+      
+        if (selectedOption === "evilText") {
+          textContainer.classList.remove("goodTextContainer");
+          textContainer.classList.add("evilTextContainer");
+      
+          newText.innerText = "Black Text On An Image";
+          newText.classList.add("badText");
+      
+          textContainer.replaceChild(newText, textContent); 
+        } else if (selectedOption === "goodText") {
+          textContainer.classList.remove("evilTextContainer");
+          textContainer.classList.add("goodTextContainer");
+      
+          newText.innerText = "Clean Text";
+          newText.classList.add("goodText");
+      
+          textContainer.replaceChild(newText, textContent); 
+        }
       }
-    }
-  
     function qs(selector) {
       return document.querySelector(selector);
     }
+
   })();
